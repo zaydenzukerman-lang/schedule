@@ -362,7 +362,7 @@
     <li><span class="sw" style="background:var(--c-gym)"></span> Gym</li>
     <li><span class="sw" style="background:var(--c-bjj)"></span> Jiu Jitsu</li>
     <li><span class="sw" style="background:var(--c-school)"></span> School</li>
-    <li><span class="sw" style="background:var(--c-work)"></span> Curb (work)</li>
+    <li><span class="sw" style="background:var(--c-work)"></span> WebBlaze (work)</li>
     <li><span class="sw" style="background:var(--c-meal)"></span> Meals</li>
     <li><span class="sw" style="background:var(--c-club)"></span> Clubs / sport</li>
     <li><span class="sw" style="background:var(--c-rest)"></span> Routine / rest</li>
@@ -448,11 +448,11 @@
     { m: 495,  label: "Pre-gym snack", note: "Carbs only — no protein", cat: "meal-light" },
     { m: 510,  label: "GYM", note: "1–1.5 hr", cat: "gym" },
     { m: 600,  label: "Shower + Meal 1", note: "Big breakfast, protein", cat: "meal" },
-    { m: 645,  label: "Curb — work block 1", note: "Hardest tasks first (flexible)", cat: "work" },
+    { m: 645,  label: "WebBlaze — work block 1", note: "Hardest tasks first (flexible)", cat: "work" },
     { m: 780,  label: "Meal 2 — lunch", cat: "meal" },
     { m: 810,  label: "School block", note: "Live class or self-paced", cat: "school" },
     { m: 960,  label: "Meal 3", cat: "meal" },
-    { m: 990,  label: "Curb — work block 2", note: "Outreach / school overflow", cat: "work" },
+    { m: 990,  label: "WebBlaze — work block 2", note: "Outreach / school overflow", cat: "work" },
     { m: 1080, label: "Club · basketball · free", cat: "club" },
     { m: 1155, label: "Meal 4 — dinner", note: "Later, as planned", cat: "meal" },
     { m: 1185, label: "Free time · game dev / hobby", cat: "club" },
@@ -464,11 +464,11 @@
     { m: 495,  label: "Pre-gym snack", note: "Carbs only — no protein", cat: "meal-light" },
     { m: 510,  label: "GYM — upper body", note: "Keeps legs fresh for BJJ", cat: "gym" },
     { m: 600,  label: "Shower + Meal 1", note: "Big breakfast", cat: "meal" },
-    { m: 645,  label: "Curb work / school", note: "Flexible", cat: "work" },
+    { m: 645,  label: "WebBlaze work / school", note: "Flexible", cat: "work" },
     { m: 780,  label: "Meal 2", cat: "meal" },
     { m: 810,  label: "School block", cat: "school" },
     { m: 960,  label: "Meal 3", note: "Light, carb-leaning — last food before BJJ", cat: "meal-light" },
-    { m: 990,  label: "Curb / free", cat: "work" },
+    { m: 990,  label: "WebBlaze / free", cat: "work" },
     { m: 1110, label: "Tiny carb snack", note: "Optional", cat: "meal-light" },
     { m: 1155, label: "JIU JITSU", note: "7:15–9:20 · includes walk", cat: "bjj" },
     { m: 1290, label: "Dinner", note: "Protein + carbs to recover", cat: "meal" },
@@ -561,7 +561,7 @@
 
   var CLUBS = [
     { name: "3D Game Design", note: "Straight into your dev work (North Star, Blue Spark)", protect: true },
-    { name: "Web Design", note: "Feeds directly into Curb client work", protect: true },
+    { name: "Web Design", note: "Feeds directly into WebBlaze client work", protect: true },
     { name: "Investor Club", note: "Mock portfolios · stock-market competitions" }
   ];
 
@@ -692,7 +692,7 @@
   if (todayTemplate === "bjj") {
     sub.textContent = "BJJ day — gym (upper) this morning, jiu jitsu 7:15–9:20 tonight.";
   } else if (todayTemplate === "normal") {
-    sub.textContent = "Normal day — gym this morning, school + Curb blocks, late dinner.";
+    sub.textContent = "Normal day — gym this morning, school + WebBlaze blocks, late dinner.";
   } else if (todayIdx === 6) {
     sub.textContent = "Saturday — athletic gym + basketball. Lightest structure of the week.";
   } else {
