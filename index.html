@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#E1611F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%93%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>*{margin:0;padding:0;box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+<title>Zayden — Command Schedule</title>
+<style>
+  :root {
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --surface-2: #F5F7FA;
+    --border: #DCE0E7;
+    --ink: #161A21;
+    --ink-soft: #4C5361;
+    --ink-faint: #868E9C;
+    --accent: #E1611F;
+    --accent-ink: #FFFFFF;
+
+    --c-gym: #E86A16;
+    --c-bjj: #DC3556;
+    --c-school: #2F7DD1;
+    --c-work: #7C5CF0;
+    --c-meal: #219A62;
+    --c-club: #0E9C9C;
+    --c-rest: #6D7788;
+
+    --shadow: 0 1px 2px rgba(20,25,35,.05), 0 6px 20px rgba(20,25,35,.06);
+    --shadow-lift: 0 2px 4px rgba(20,25,35,.06), 0 14px 34px rgba(20,25,35,.10);
+    --radius: 14px;
+    --maxw: 1120px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0D1015;
+      --surface: #161A22;
+      --surface-2: #1B212B;
+      --border: #29313D;
+      --ink: #E9ECF2;
+      --ink-soft: #9BA4B3;
+      --ink-faint: #616A79;
+      --accent: #FF7A42;
+      --accent-ink: #17110C;
+
+      --c-gym: #F2842F;
+      --c-bjj: #F0506E;
+      --c-school: #4E97E6;
+      --c-work: #9A80FF;
+      --c-meal: #34B679;
+      --c-club: #23B6B6;
+      --c-rest: #8390A2;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+      --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 16px 40px rgba(0,0,0,.5);
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #EEF0F4; --surface: #FFFFFF; --surface-2: #F5F7FA; --border: #DCE0E7;
+    --ink: #161A21; --ink-soft: #4C5361; --ink-faint: #868E9C; --accent: #E1611F; --accent-ink: #FFFFFF;
+    --c-gym: #E86A16; --c-bjj: #DC3556; --c-school: #2F7DD1; --c-work: #7C5CF0;
+    --c-meal: #219A62; --c-club: #0E9C9C; --c-rest: #6D7788;
+    --shadow: 0 1px 2px rgba(20,25,35,.05), 0 6px 20px rgba(20,25,35,.06);
+    --shadow-lift: 0 2px 4px rgba(20,25,35,.06), 0 14px 34px rgba(20,25,35,.10);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D1015; --surface: #161A22; --surface-2: #1B212B; --border: #29313D;
+    --ink: #E9ECF2; --ink-soft: #9BA4B3; --ink-faint: #616A79; --accent: #FF7A42; --accent-ink: #17110C;
+    --c-gym: #F2842F; --c-bjj: #F0506E; --c-school: #4E97E6; --c-work: #9A80FF;
+    --c-meal: #34B679; --c-club: #23B6B6; --c-rest: #8390A2;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 16px 40px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 480px at 82% -8%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 60%),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 32px) 64px; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 0 0 10px;
+  }
+
+  /* ---- Header ---- */
+  header.masthead { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+  h1 {
+    font-size: clamp(34px, 6vw, 58px); line-height: .96; letter-spacing: -.03em; font-weight: 800;
+    margin: 0; text-wrap: balance;
+  }
+  h1 .dot { color: var(--accent); }
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chip {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em;
+    color: var(--ink-soft); background: var(--surface); border: 1px solid var(--border);
+    padding: 5px 10px; border-radius: 999px;
+  }
+  .chip b { color: var(--ink); font-weight: 600; }
+
+  .clock {
+    text-align: right; font-family: var(--font-mono);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 12px 16px; box-shadow: var(--shadow); min-width: 178px;
+  }
+  .clock .day { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+  .clock .time { font-size: 26px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .clock .theme-toggle {
+    margin-top: 6px; font-family: var(--font-sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-soft); background: transparent; border: 0; cursor: pointer; padding: 2px 0;
+  }
+  .clock .theme-toggle:hover { color: var(--accent); }
+
+  /* ---- This Week panel ---- */
+  .thisweek {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 16%, var(--surface)), var(--surface) 62%);
+    border: 1px solid color-mix(in oklab, var(--accent) 34%, var(--border));
+    border-radius: var(--radius); padding: 20px 22px; margin-bottom: 26px; box-shadow: var(--shadow);
+  }
+  .thisweek::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--accent);
+  }
+  .tw-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+  .tw-head h2 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
+  .stamp { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); }
+  .stamp b { color: var(--accent); }
+  .tw-body { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .tw-empty {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; padding: 12px 14px;
+    color: var(--ink-soft); font-size: 14.5px;
+  }
+  .tw-empty .pin { color: var(--accent); font-weight: 700; font-family: var(--font-mono); }
+  .tw-empty b { color: var(--ink); font-weight: 600; }
+
+  /* ---- Today banner ---- */
+  .today-banner {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 30px; box-shadow: var(--shadow);
+  }
+  .today-banner .lead { font-weight: 700; }
+  .today-banner .sub { color: var(--ink-soft); font-size: 14px; }
+  .pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); animation: pulse 2.4s infinite; flex: none; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent);} 70% { box-shadow: 0 0 0 10px transparent;} 100% { box-shadow: 0 0 0 0 transparent;} }
+
+  /* ---- Section headings ---- */
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin: 8px 0 16px; }
+  .section-head h2 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
+  .section-head .rule { flex: 1; height: 1px; background: var(--border); }
+  .section-head .count { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+
+  /* ---- Timeline cards ---- */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 34px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card.today { border-color: color-mix(in oklab, var(--accent) 55%, var(--border)); box-shadow: var(--shadow-lift), 0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 15px 18px; border-bottom: 1px solid var(--border); }
+  .card-head .title { display: flex; align-items: center; gap: 10px; }
+  .card-head h3 { margin: 0; font-size: 16px; letter-spacing: -.01em; }
+  .card-head .days { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+  .badge-today {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--accent); color: var(--accent-ink); padding: 3px 8px; border-radius: 999px; font-weight: 700;
+  }
+
+  .timeline { list-style: none; margin: 0; padding: 6px 0; }
+  .row {
+    display: grid; grid-template-columns: 62px 1fr; align-items: baseline; gap: 12px;
+    padding: 9px 18px; position: relative; border-left: 3px solid transparent;
+  }
+  .row .t { font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .row .body { min-width: 0; }
+  .row .label { font-size: 14.5px; font-weight: 600; letter-spacing: -.005em; }
+  .row .note { font-size: 12.5px; color: var(--ink-faint); margin-top: 1px; }
+  .row .label .cat-dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 7px; vertical-align: middle; background: var(--rowc, var(--c-rest)); }
+  .row.is-now {
+    background: color-mix(in oklab, var(--accent) 9%, transparent);
+    border-left-color: var(--accent);
+  }
+  .row.is-now .now-tag {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-ink); background: var(--accent); padding: 1px 6px; border-radius: 5px; margin-left: 8px; font-weight: 700;
+  }
+
+  /* category accent per row via inline --rowc; tint left keyline */
+  .row[data-cat] { --rowc: var(--c-rest); }
+  .row[data-cat="gym"] { --rowc: var(--c-gym); }
+  .row[data-cat="bjj"] { --rowc: var(--c-bjj); }
+  .row[data-cat="school"] { --rowc: var(--c-school); }
+  .row[data-cat="work"] { --rowc: var(--c-work); }
+  .row[data-cat="meal"] { --rowc: var(--c-meal); }
+  .row[data-cat="meal-light"] { --rowc: var(--c-meal); }
+  .row[data-cat="club"] { --rowc: var(--c-club); }
+  .row[data-cat="rest"] { --rowc: var(--c-rest); }
+
+  /* ---- Legend ---- */
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 30px; padding: 0; list-style: none; }
+  .legend li { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--ink-soft); }
+  .legend .sw { width: 11px; height: 11px; border-radius: 3px; }
+
+  /* ---- Gym week strip ---- */
+  .gymgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-bottom: 34px; }
+  .gymday {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 12px;
+    box-shadow: var(--shadow); position: relative; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .gymday::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--gc, var(--c-rest)); }
+  .gymday.today { border-color: color-mix(in oklab, var(--accent) 55%, var(--border)); box-shadow: var(--shadow-lift); }
+  .gymday .dow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+  .gymday .focus { font-weight: 800; font-size: 16px; margin: 6px 0 2px; letter-spacing: -.01em; }
+  .gymday .sub { font-size: 12px; color: var(--ink-soft); }
+  .gymday .bjj-flag { display: inline-block; margin-top: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--c-bjj); border: 1px solid color-mix(in oklab, var(--c-bjj) 40%, var(--border)); border-radius: 5px; padding: 1px 5px; }
+  .gymday.rest .focus { color: var(--ink-faint); }
+
+  /* ---- Two column bottom (clubs + rules) ---- */
+  .grid-2b { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; margin-bottom: 30px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; }
+  .panel h3 { margin: 0 0 14px; font-size: 16px; }
+
+  .club { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-top: 1px solid var(--border); }
+  .club:first-of-type { border-top: 0; }
+  .club .n { font-family: var(--font-mono); font-size: 12px; color: var(--c-club); width: 22px; flex: none; padding-top: 2px; }
+  .club .c-body { min-width: 0; }
+  .club .c-name { font-weight: 700; font-size: 14.5px; }
+  .club .c-name .protect { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--border)); border-radius: 5px; padding: 1px 5px; margin-left: 8px; vertical-align: middle; }
+  .club .c-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 1px; }
+
+  .rules { list-style: none; margin: 0; padding: 0; }
+  .rules li { display: flex; gap: 11px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--ink-soft); }
+  .rules li:first-child { border-top: 0; }
+  .rules li .k { color: var(--accent); font-family: var(--font-mono); font-weight: 700; flex: none; }
+  .rules li b { color: var(--ink); font-weight: 600; }
+
+  footer.note { text-align: center; color: var(--ink-faint); font-size: 13px; margin-top: 8px; }
+  footer.note b { color: var(--ink-soft); }
+
+  /* ---- entrance ---- */
+  .reveal { opacity: 0; transform: translateY(10px); animation: rise .5s cubic-bezier(.2,.7,.3,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (hover: hover) {
+    .card:hover, .gymday:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+  }
+
+  /* ---- Goal card + gym detail ---- */
+  .goalcard {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 18px;
+    background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--c-gym);
+    border-radius: var(--radius); padding: 18px 22px; box-shadow: var(--shadow); margin-bottom: 22px;
+  }
+  .goalcard .gc-step { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
+  .goalcard .gc-step b { display: block; font-family: var(--font-sans); font-size: 15px; letter-spacing: -.01em; text-transform: none; color: var(--ink); margin-top: 4px; font-weight: 700; }
+  .goalcard .gc-arrow { font-size: 22px; color: var(--c-gym); font-weight: 800; }
+  .goalcard .gc-how { flex: 1; min-width: 240px; font-size: 13.5px; color: var(--ink-soft); border-left: 1px solid var(--border); padding-left: 18px; }
+  .goalcard .gc-how b { color: var(--ink); font-weight: 600; }
+
+  .detailgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .exday { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
+  .exday .exh { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 15px; border-bottom: 1px solid var(--border); }
+  .exday .exh .f { font-weight: 800; font-size: 15px; letter-spacing: -.01em; }
+  .exday .exh .d { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
+  .exday.leg { border-color: color-mix(in oklab, var(--c-gym) 45%, var(--border)); }
+  .exday.leg .exh { background: color-mix(in oklab, var(--c-gym) 12%, transparent); }
+  .exday ul { list-style: none; margin: 0; padding: 5px 0 8px; }
+  .exday li { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; padding: 6px 15px; font-size: 13px; }
+  .exday li .nm { color: var(--ink); }
+  .exday li .sr { font-family: var(--font-mono); font-size: 12px; color: var(--c-gym); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .exday .flag { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--c-gym); padding: 6px 15px 2px; }
+  @media (hover: hover) { .exday:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); } }
+
+  .weightcta {
+    display: flex; gap: 12px; align-items: flex-start; background: color-mix(in oklab, var(--c-meal) 8%, var(--surface));
+    border: 1px dashed color-mix(in oklab, var(--c-meal) 45%, var(--border)); border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 30px; font-size: 13.5px; color: var(--ink-soft);
+  }
+  .weightcta .pin { color: var(--c-meal); font-weight: 700; font-family: var(--font-mono); }
+  .weightcta b { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .grid-2, .grid-2b { grid-template-columns: 1fr; }
+    .gymgrid { grid-template-columns: repeat(2, 1fr); }
+    .detailgrid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .clock { text-align: left; }
+    header.masthead { align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    .pulse { animation: none; }
+    .card, .gymday { transition: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead reveal">
+    <div>
+      <p class="eyebrow">Weekly Operating System · 2026–27</p>
+      <h1>Command Schedule<span class="dot">.</span></h1>
+      <div class="meta-chips">
+        <span class="chip">Wake <b>8:00a</b></span>
+        <span class="chip">Sleep <b>10:30p</b></span>
+        <span class="chip">School starts <b>Sep 9</b></span>
+        <span class="chip">CGA · <b>online</b></span>
+      </div>
+    </div>
+    <div class="clock" id="clock">
+      <div class="day" id="clock-day">—</div>
+      <div class="time" id="clock-time">--:--</div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light or dark theme">◐ Theme</button>
+    </div>
+  </header>
+
+  <!-- SUNDAY-UPDATE SURFACE -->
+  <section class="thisweek reveal" style="animation-delay:.05s" aria-labelledby="tw-title">
+    <div class="tw-head">
+      <h2 id="tw-title">This Week</h2>
+      <span class="stamp">Updated <b id="updated-stamp">Sun, Jul 12</b> · next update Sun night</span>
+    </div>
+    <div class="tw-body" id="tw-body">
+      <div class="tw-empty">
+        <span class="pin">▸</span>
+        <div>No events or class times locked in yet. Send me your <b>CGA class time slots</b> plus anything on this week (BJJ changes, basketball games, appointments) and I'll drop them in here Sunday night.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE TODAY -->
+  <div class="today-banner reveal" id="today-banner" style="animation-delay:.1s">
+    <span class="pulse" aria-hidden="true"></span>
+    <span class="lead" id="today-lead">Today</span>
+    <span class="sub" id="today-sub"></span>
+  </div>
+
+  <!-- LEGEND -->
+  <ul class="legend reveal" style="animation-delay:.12s" aria-label="Block type legend">
+    <li><span class="sw" style="background:var(--c-gym)"></span> Gym</li>
+    <li><span class="sw" style="background:var(--c-bjj)"></span> Jiu Jitsu</li>
+    <li><span class="sw" style="background:var(--c-school)"></span> School</li>
+    <li><span class="sw" style="background:var(--c-work)"></span> Curb (work)</li>
+    <li><span class="sw" style="background:var(--c-meal)"></span> Meals</li>
+    <li><span class="sw" style="background:var(--c-club)"></span> Clubs / sport</li>
+    <li><span class="sw" style="background:var(--c-rest)"></span> Routine / rest</li>
+  </ul>
+
+  <!-- DAY TIMELINES -->
+  <div class="section-head reveal" style="animation-delay:.12s"><h2>Daily Templates</h2><span class="rule"></span><span class="count">2 day types</span></div>
+  <div class="grid-2 reveal" style="animation-delay:.14s" id="timelines"></div>
+
+  <!-- GYM WEEK -->
+  <div class="section-head reveal" style="animation-delay:.16s"><h2>Gym Program</h2><span class="rule"></span><span class="count">morning · Sun rest</span></div>
+  <div class="gymgrid reveal" style="animation-delay:.18s" id="gymgrid"></div>
+
+  <!-- GYM DETAIL -->
+  <div class="section-head reveal"><h2>Training Plan — Lean to Muscular</h2><span class="rule"></span><span class="count">evidence-based</span></div>
+
+  <div class="goalcard reveal">
+    <div class="gc-step">Right now<b>Lean · low fat · low muscle</b></div>
+    <div class="gc-arrow" aria-hidden="true">→</div>
+    <div class="gc-step">The goal<b>Fit &amp; muscular</b></div>
+    <div class="gc-how">The lever is simple: a <b>slight calorie surplus</b> + <b>progressive overload</b> across 6 focused sessions a week. Upper body gets hit 2–3× each; legs once, done hard. Being lean now is an advantage — beginners build muscle fastest.</div>
+  </div>
+
+  <div class="detailgrid reveal" id="gymdetail"></div>
+
+  <div class="grid-2b reveal">
+    <div class="panel">
+      <h3>Training Principles</h3>
+      <ul class="rules" id="principles"></ul>
+    </div>
+    <div class="panel">
+      <h3>Eating to Build Muscle</h3>
+      <ul class="rules" id="nutrition"></ul>
+    </div>
+  </div>
+
+  <div class="weightcta reveal">
+    <span class="pin">▲</span>
+    <div>Protein and calorie targets scale with your bodyweight. <b>Tell me what you weigh</b> and I'll drop exact daily numbers (grams of protein, calorie target) right into this section on Sunday.</div>
+  </div>
+
+  <div class="weightcta reveal" style="background: color-mix(in oklab, var(--c-gym) 8%, var(--surface)); border-color: color-mix(in oklab, var(--c-gym) 45%, var(--border));">
+    <span class="pin" style="color: var(--c-gym);">!</span>
+    <div><b>Age note (13):</b> strength training is safe and great for you when form comes first. Skip 1-rep-max attempts and powerlifting-style maxing until you're more grown — build the technique now, the size follows.</div>
+  </div>
+
+  <!-- CLUBS + RULES -->
+  <div class="grid-2b reveal" style="animation-delay:.2s">
+    <div class="panel">
+      <h3>Clubs &amp; Extracurriculars</h3>
+      <div id="clubs"></div>
+    </div>
+    <div class="panel">
+      <h3>Non-Negotiable Rules</h3>
+      <ul class="rules" id="rules"></ul>
+    </div>
+  </div>
+
+  <footer class="note reveal" style="animation-delay:.22s">
+    Built as a living dashboard — <b>redeploys to this same link every Sunday</b> once you send events + class times.
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Theme toggle ----------
+  var root = document.documentElement;
+  document.getElementById("themeToggle").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    if (!cur) {
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      cur = prefersDark ? "dark" : "light";
+    }
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+
+  // ---------- Data ----------
+  var NORMAL = [
+    { m: 480,  label: "Wake · bed · hygiene", cat: "rest" },
+    { m: 495,  label: "Pre-gym snack", note: "Carbs only — no protein", cat: "meal-light" },
+    { m: 510,  label: "GYM", note: "1–1.5 hr", cat: "gym" },
+    { m: 600,  label: "Shower + Meal 1", note: "Big breakfast, protein", cat: "meal" },
+    { m: 645,  label: "Curb — work block 1", note: "Hardest tasks first (flexible)", cat: "work" },
+    { m: 780,  label: "Meal 2 — lunch", cat: "meal" },
+    { m: 810,  label: "School block", note: "Live class or self-paced", cat: "school" },
+    { m: 960,  label: "Meal 3", cat: "meal" },
+    { m: 990,  label: "Curb — work block 2", note: "Outreach / school overflow", cat: "work" },
+    { m: 1080, label: "Club · basketball · free", cat: "club" },
+    { m: 1155, label: "Meal 4 — dinner", note: "Later, as planned", cat: "meal" },
+    { m: 1185, label: "Free time · game dev / hobby", cat: "club" },
+    { m: 1290, label: "Wind-down · reading", note: "Screens down — 1 hr before bed", cat: "rest" },
+    { m: 1350, label: "Sleep", cat: "rest" }
+  ];
+  var BJJ = [
+    { m: 480,  label: "Wake · hygiene", cat: "rest" },
+    { m: 495,  label: "Pre-gym snack", note: "Carbs only — no protein", cat: "meal-light" },
+    { m: 510,  label: "GYM — upper body", note: "Keeps legs fresh for BJJ", cat: "gym" },
+    { m: 600,  label: "Shower + Meal 1", note: "Big breakfast", cat: "meal" },
+    { m: 645,  label: "Curb work / school", note: "Flexible", cat: "work" },
+    { m: 780,  label: "Meal 2", cat: "meal" },
+    { m: 810,  label: "School block", cat: "school" },
+    { m: 960,  label: "Meal 3", note: "Light, carb-leaning — last food before BJJ", cat: "meal-light" },
+    { m: 990,  label: "Curb / free", cat: "work" },
+    { m: 1110, label: "Tiny carb snack", note: "Optional", cat: "meal-light" },
+    { m: 1155, label: "JIU JITSU", note: "7:15–9:20 · includes walk", cat: "bjj" },
+    { m: 1290, label: "Dinner", note: "Protein + carbs to recover", cat: "meal" },
+    { m: 1350, label: "Sleep", cat: "rest" }
+  ];
+
+  var TIMELINES = [
+    { key: "bjj",    title: "BJJ Day", days: "Mon · Wed", data: BJJ },
+    { key: "normal", title: "Normal Day", days: "Tue · Thu · Fri", data: NORMAL }
+  ];
+
+  // dayIndex: 0 Sun ... 6 Sat  ->  which template
+  var DAY_TEMPLATE = { 1: "bjj", 3: "bjj", 2: "normal", 4: "normal", 5: "normal" };
+
+  var GYM = [
+    { dow: "Mon", focus: "Push", sub: "Chest · shoulders · triceps", gc: "var(--c-gym)", bjj: true },
+    { dow: "Tue", focus: "Pull", sub: "Back · biceps", gc: "var(--c-gym)" },
+    { dow: "Wed", focus: "Shoulders + Arms", sub: "Delts · biceps · triceps", gc: "var(--c-gym)", bjj: true },
+    { dow: "Thu", focus: "Legs", sub: "The one leg day — go hard", gc: "var(--c-gym)" },
+    { dow: "Fri", focus: "Push", sub: "Chest · shoulders · triceps", gc: "var(--c-gym)" },
+    { dow: "Sat", focus: "Pull + Athletic", sub: "Back · biceps + basketball", gc: "var(--c-club)" },
+    { dow: "Sun", focus: "Rest", sub: "Recover · mobility", gc: "var(--c-rest)", rest: true }
+  ];
+  var GYM_DOW_INDEX = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 0 };
+
+  var GYM_DETAIL = [
+    { day: "Mon", focus: "Push", note: "BJJ night", ex: [
+      { nm: "DB Bench Press", sr: "3 × 8–12" },
+      { nm: "Incline DB Press", sr: "3 × 8–12" },
+      { nm: "Seated Shoulder Press", sr: "3 × 8–12" },
+      { nm: "Lateral Raises", sr: "3 × 12–15" },
+      { nm: "Triceps Pushdown", sr: "3 × 10–15" }
+    ]},
+    { day: "Tue", focus: "Pull", ex: [
+      { nm: "Pull-ups (assisted ok)", sr: "3 × 6–10" },
+      { nm: "Barbell / DB Row", sr: "3 × 8–12" },
+      { nm: "Lat Pulldown", sr: "3 × 10–12" },
+      { nm: "Face Pulls", sr: "3 × 12–15" },
+      { nm: "DB Biceps Curl", sr: "3 × 10–12" }
+    ]},
+    { day: "Wed", focus: "Shoulders + Arms", note: "BJJ night", ex: [
+      { nm: "Overhead Press", sr: "3 × 8–12" },
+      { nm: "Lateral Raises", sr: "3 × 12–15" },
+      { nm: "Rear-Delt Fly", sr: "3 × 12–15" },
+      { nm: "Barbell / DB Curl", sr: "3 × 8–12" },
+      { nm: "Overhead Triceps Ext.", sr: "3 × 10–12" }
+    ]},
+    { day: "Thu", focus: "Legs", leg: true, note: "Only leg day — make it count", ex: [
+      { nm: "Goblet / Back Squat", sr: "4 × 8–12" },
+      { nm: "Romanian Deadlift", sr: "3 × 8–12" },
+      { nm: "Bulgarian Split Squat", sr: "3 × 10 ea" },
+      { nm: "Leg Curl", sr: "3 × 10–12" },
+      { nm: "Calf Raises", sr: "4 × 12–20" }
+    ]},
+    { day: "Fri", focus: "Push", ex: [
+      { nm: "Incline Barbell/DB Press", sr: "3 × 8–12" },
+      { nm: "Flat DB Press", sr: "3 × 8–12" },
+      { nm: "Arnold / Shoulder Press", sr: "3 × 8–12" },
+      { nm: "Lateral Raises", sr: "3 × 12–15" },
+      { nm: "Dips (assisted ok)", sr: "3 × 8–12" }
+    ]},
+    { day: "Sat", focus: "Pull + Athletic", note: "+ basketball", ex: [
+      { nm: "Chin-ups", sr: "3 × AMRAP" },
+      { nm: "Seated Cable Row", sr: "3 × 10–12" },
+      { nm: "Hammer Curls", sr: "3 × 12" },
+      { nm: "Box Jumps / Sprints", sr: "5 × explosive" },
+      { nm: "Core — hang leg raise", sr: "3 × 12–15" }
+    ]}
+  ];
+
+  var PRINCIPLES = [
+    { k: "01", html: "<b>Progressive overload is the whole game.</b> Hit the top of the rep range with clean form on every set, then add a little weight next time." },
+    { k: "02", html: "<b>Stop 1–2 reps short of failure.</b> Train hard but keep form perfect — you're still grooving the lifts." },
+    { k: "03", html: "<b>10–20 hard sets per muscle per week</b> is the growth zone. This split lands there for your upper body." },
+    { k: "04", html: "<b>6–12 reps on big lifts, 12–15 on isolation.</b> Both build muscle when the sets are genuinely hard." },
+    { k: "05", html: "<b>Rest 2–3 min on compounds, ~1 min on isolation.</b> More rest = more reps = more muscle." },
+    { k: "06", html: "<b>Warm up 5 min + 1–2 light sets</b> before your first heavy lift every session." },
+    { k: "07", html: "<b>Track every workout.</b> Beat last week by one rep or a little weight — that's real progress." }
+  ];
+
+  var NUTRITION = [
+    { k: "01", html: "<b>Eat a slight surplus</b> — roughly +300–500 calories over maintenance. Lean beginners can gain fastest, so lean toward the higher end." },
+    { k: "02", html: "<b>Protein ≈ 1 g per lb of bodyweight, daily.</b> Spread it across your 4 meals." },
+    { k: "03", html: "<b>Carbs are fuel — 40–60% of calories.</b> Rice, oats, pasta, fruit. They power the gym and drive growth." },
+    { k: "04", html: "<b>Fats 20–30%</b> for hormones — eggs, nuts, olive oil, salmon." },
+    { k: "05", html: "<b>Meal 1 after the gym</b> = protein + carbs. Prime window to refuel and rebuild." },
+    { k: "06", html: "<b>Sleep is when muscle is built.</b> Your 8:00→10:30 gives 9.5 hrs — protect it like a workout." },
+    { k: "07", html: "<b>Aim to gain ~0.25–0.5% bodyweight per week.</b> Faster than that is mostly fat — ease off the surplus." }
+  ];
+
+  var CLUBS = [
+    { name: "3D Game Design", note: "Straight into your dev work (North Star, Blue Spark)", protect: true },
+    { name: "Web Design", note: "Feeds directly into Curb client work", protect: true },
+    { name: "Investor Club", note: "Mock portfolios · stock-market competitions" }
+  ];
+
+  var RULES = [
+    { k: "01", html: "<b>No meals within 3 hrs of a workout.</b> Small carb-only snack is fine — no protein." },
+    { k: "02", html: "<b>Gym ≠ BJJ.</b> You lift every morning; jiu jitsu is separate on top." },
+    { k: "03", html: "<b>Legs never on a BJJ morning</b> (Mon/Wed) — keep them fresh to roll." },
+    { k: "04", html: "<b>Form over weight.</b> Full range, 2–3 sets of 8–12 reps." },
+    { k: "05", html: "<b>Dinner runs late</b> — biggest protein meal after the day's last session." },
+    { k: "06", html: "<b>Class times are TBD.</b> Book CGA live classes into the school block; I update Sundays." }
+  ];
+
+  // ---------- Helpers ----------
+  var DAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+  function fmt(m) {
+    var h = Math.floor(m / 60), min = m % 60;
+    var ap = h >= 12 ? "p" : "a";
+    var h12 = h % 12; if (h12 === 0) h12 = 12;
+    return h12 + ":" + (min < 10 ? "0" + min : min) + ap;
+  }
+
+  function esc(s) { return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  // ---------- Render timelines ----------
+  var now = new Date();
+  var todayIdx = now.getDay();
+  var todayTemplate = DAY_TEMPLATE[todayIdx] || null; // null on Sat/Sun
+  var nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+  var container = document.getElementById("timelines");
+  TIMELINES.forEach(function (tl) {
+    var isToday = tl.key === todayTemplate;
+    var rows = tl.data.map(function (r, i) {
+      var end = (i + 1 < tl.data.length) ? tl.data[i + 1].m : 1440;
+      var live = isToday && nowMinutes >= r.m && nowMinutes < end;
+      return '<li class="row' + (live ? ' is-now' : '') + '" data-cat="' + r.cat + '">' +
+               '<span class="t">' + fmt(r.m) + '</span>' +
+               '<span class="body">' +
+                 '<span class="label"><span class="cat-dot"></span>' + esc(r.label) +
+                    (live ? '<span class="now-tag">now</span>' : '') + '</span>' +
+                 (r.note ? '<span class="note">' + esc(r.note) + '</span>' : '') +
+               '</span>' +
+             '</li>';
+    }).join("");
+
+    var card = document.createElement("div");
+    card.className = "card" + (isToday ? " today" : "");
+    card.innerHTML =
+      '<div class="card-head">' +
+        '<span class="title"><h3>' + tl.title + '</h3></span>' +
+        (isToday ? '<span class="badge-today">Today</span>' : '<span class="days">' + tl.days + '</span>') +
+      '</div>' +
+      '<ul class="timeline">' + rows + '</ul>';
+    container.appendChild(card);
+  });
+
+  // ---------- Render gym ----------
+  var gg = document.getElementById("gymgrid");
+  GYM.forEach(function (g) {
+    var isToday = GYM_DOW_INDEX[g.dow] === todayIdx;
+    var el = document.createElement("div");
+    el.className = "gymday" + (g.rest ? " rest" : "") + (isToday ? " today" : "");
+    el.style.setProperty("--gc", g.gc);
+    el.innerHTML =
+      '<div class="dow">' + g.dow + (isToday ? ' ·' : '') + '</div>' +
+      '<div class="focus">' + g.focus + '</div>' +
+      '<div class="sub">' + g.sub + '</div>' +
+      (g.bjj ? '<span class="bjj-flag">BJJ night</span>' : '');
+    gg.appendChild(el);
+  });
+
+  // ---------- Render gym detail ----------
+  var gd = document.getElementById("gymdetail");
+  GYM_DETAIL.forEach(function (d) {
+    var isToday = GYM_DOW_INDEX[d.day] === todayIdx;
+    var items = d.ex.map(function (e) {
+      return '<li><span class="nm">' + esc(e.nm) + '</span><span class="sr">' + esc(e.sr) + '</span></li>';
+    }).join("");
+    var el = document.createElement("div");
+    el.className = "exday" + (d.leg ? " leg" : "");
+    el.innerHTML =
+      '<div class="exh"><span class="f">' + esc(d.focus) + '</span>' +
+        '<span class="d">' + d.day + (isToday ? ' · today' : '') + '</span></div>' +
+      (d.note ? '<span class="flag">' + esc(d.note) + '</span>' : '') +
+      '<ul>' + items + '</ul>';
+    gd.appendChild(el);
+  });
+
+  // ---------- Render principles + nutrition ----------
+  function renderRuleList(id, arr) {
+    var ul = document.getElementById(id);
+    arr.forEach(function (r) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="k">' + r.k + '</span><span>' + r.html + '</span>';
+      ul.appendChild(li);
+    });
+  }
+  renderRuleList("principles", PRINCIPLES);
+  renderRuleList("nutrition", NUTRITION);
+
+  // ---------- Render clubs ----------
+  var cl = document.getElementById("clubs");
+  CLUBS.forEach(function (c, i) {
+    var row = document.createElement("div");
+    row.className = "club";
+    row.innerHTML =
+      '<span class="n">' + (i + 1 < 10 ? "0" + (i + 1) : (i + 1)) + '</span>' +
+      '<span class="c-body">' +
+        '<span class="c-name">' + esc(c.name) + (c.protect ? '<span class="protect">protect</span>' : '') + '</span>' +
+        '<span class="c-note">' + esc(c.note) + '</span>' +
+      '</span>';
+    cl.appendChild(row);
+  });
+
+  // ---------- Render rules ----------
+  var rl = document.getElementById("rules");
+  RULES.forEach(function (r) {
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="k">' + r.k + '</span><span>' + r.html + '</span>';
+    rl.appendChild(li);
+  });
+
+  // ---------- Today banner ----------
+  var lead = document.getElementById("today-lead");
+  var sub = document.getElementById("today-sub");
+  lead.textContent = DAY_NAMES[todayIdx];
+  if (todayTemplate === "bjj") {
+    sub.textContent = "BJJ day — gym (upper) this morning, jiu jitsu 7:15–9:20 tonight.";
+  } else if (todayTemplate === "normal") {
+    sub.textContent = "Normal day — gym this morning, school + Curb blocks, late dinner.";
+  } else if (todayIdx === 6) {
+    sub.textContent = "Saturday — athletic gym + basketball. Lightest structure of the week.";
+  } else {
+    sub.textContent = "Sunday — rest day. No gym. Recover, and send me this week's events tonight.";
+  }
+
+  // ---------- Live clock ----------
+  function tick() {
+    var d = new Date();
+    document.getElementById("clock-day").textContent = DAY_NAMES[d.getDay()];
+    var h = d.getHours(), min = d.getMinutes();
+    var ap = h >= 12 ? "PM" : "AM";
+    var h12 = h % 12; if (h12 === 0) h12 = 12;
+    document.getElementById("clock-time").textContent = h12 + ":" + (min < 10 ? "0" + min : min) + " " + ap;
+  }
+  tick();
+  setInterval(tick, 15000);
+})();
+</script>
+
+</body>
+</html>
