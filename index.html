@@ -32,6 +32,7 @@
     --c-meal: #219A62;
     --c-club: #0E9C9C;
     --c-rest: #6D7788;
+    --c-chore: #A17A32;
 
     --shadow: 0 1px 2px rgba(20,25,35,.05), 0 6px 20px rgba(20,25,35,.06);
     --shadow-lift: 0 2px 4px rgba(20,25,35,.06), 0 14px 34px rgba(20,25,35,.10);
@@ -58,6 +59,7 @@
       --c-meal: #34B679;
       --c-club: #23B6B6;
       --c-rest: #8390A2;
+      --c-chore: #C79B62;
       --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
       --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 16px 40px rgba(0,0,0,.5);
     }
@@ -67,7 +69,7 @@
     --bg: #EEF0F4; --surface: #FFFFFF; --surface-2: #F5F7FA; --border: #DCE0E7;
     --ink: #161A21; --ink-soft: #4C5361; --ink-faint: #868E9C; --accent: #E1611F; --accent-ink: #FFFFFF;
     --c-gym: #E86A16; --c-bjj: #DC3556; --c-school: #2F7DD1; --c-work: #7C5CF0;
-    --c-meal: #219A62; --c-club: #0E9C9C; --c-rest: #6D7788;
+    --c-meal: #219A62; --c-club: #0E9C9C; --c-rest: #6D7788; --c-chore: #A17A32;
     --shadow: 0 1px 2px rgba(20,25,35,.05), 0 6px 20px rgba(20,25,35,.06);
     --shadow-lift: 0 2px 4px rgba(20,25,35,.06), 0 14px 34px rgba(20,25,35,.10);
   }
@@ -75,7 +77,7 @@
     --bg: #0D1015; --surface: #161A22; --surface-2: #1B212B; --border: #29313D;
     --ink: #E9ECF2; --ink-soft: #9BA4B3; --ink-faint: #616A79; --accent: #FF7A42; --accent-ink: #17110C;
     --c-gym: #F2842F; --c-bjj: #F0506E; --c-school: #4E97E6; --c-work: #9A80FF;
-    --c-meal: #34B679; --c-club: #23B6B6; --c-rest: #8390A2;
+    --c-meal: #34B679; --c-club: #23B6B6; --c-rest: #8390A2; --c-chore: #C79B62;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
     --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 16px 40px rgba(0,0,0,.5);
   }
@@ -215,6 +217,7 @@
   .row[data-cat="meal-light"] { --rowc: var(--c-meal); }
   .row[data-cat="club"] { --rowc: var(--c-club); }
   .row[data-cat="rest"] { --rowc: var(--c-rest); }
+  .row[data-cat="chore"] { --rowc: var(--c-chore); }
 
   /* ---- Legend ---- */
   .legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 30px; padding: 0; list-style: none; }
@@ -359,7 +362,7 @@
     <div class="tw-body" id="tw-body">
       <div class="tw-empty">
         <span class="pin">▸</span>
-        <div>No events or class times locked in yet. Send me your <b>CGA class time slots</b> plus anything on this week (BJJ changes, basketball games, appointments) and I'll drop them in here Sunday night.</div>
+        <div>No events or class times locked in yet. Send me your <b>CGA class time slots</b> plus anything on this week (BJJ changes, appointments, laundry swaps) and I'll drop them in here Sunday night.</div>
       </div>
     </div>
   </section>
@@ -380,6 +383,7 @@
     <li><span class="sw" style="background:var(--c-meal)"></span> Meals</li>
     <li><span class="sw" style="background:var(--c-club)"></span> Clubs / sport</li>
     <li><span class="sw" style="background:var(--c-rest)"></span> Routine / rest</li>
+    <li><span class="sw" style="background:var(--c-chore)"></span> Dog · chores</li>
   </ul>
 
   <!-- DAY TIMELINES -->
@@ -455,34 +459,42 @@
 
   // ---------- Data ----------
   var NORMAL = [
-    { m: 480,  label: "Wake · bed · hygiene", cat: "rest" },
+    { m: 480,  label: "Wake · bed · hygiene", note: "+ walk the dog", cat: "rest" },
     { m: 495,  label: "Pre-gym snack", note: "Carbs only — no protein", cat: "meal-light" },
     { m: 510,  label: "GYM", note: "1–1.5 hr", cat: "gym" },
     { m: 600,  label: "Shower + Meal 1", note: "Big breakfast, protein", cat: "meal" },
     { m: 645,  label: "WebBlaze — work block 1", note: "Hardest tasks first (flexible)", cat: "work" },
+    { m: 720,  label: "Walk the dog", cat: "chore" },
     { m: 780,  label: "Meal 2 — lunch", cat: "meal" },
     { m: 810,  label: "School block", note: "Live class or self-paced", cat: "school" },
+    { m: 900,  label: "Walk the dog", cat: "chore" },
     { m: 960,  label: "Meal 3", cat: "meal" },
     { m: 990,  label: "WebBlaze — work block 2", note: "Outreach / school overflow", cat: "work" },
-    { m: 1080, label: "Club · basketball · free", cat: "club" },
+    { m: 1080, label: "Walk the dog", cat: "chore" },
+    { m: 1095, label: "Free time · clubs / hobby", cat: "club" },
     { m: 1155, label: "Meal 4 — dinner", note: "Later, as planned", cat: "meal" },
     { m: 1185, label: "Free time · game dev / hobby", cat: "club" },
     { m: 1290, label: "Wind-down · reading", note: "Screens down — 1 hr before bed", cat: "rest" },
+    { m: 1320, label: "Walk dog + take out trash", note: "Last chore before bed", cat: "chore" },
     { m: 1350, label: "Sleep", cat: "rest" }
   ];
   var BJJ = [
-    { m: 480,  label: "Wake · hygiene", cat: "rest" },
+    { m: 480,  label: "Wake · hygiene", note: "+ walk the dog", cat: "rest" },
     { m: 495,  label: "Pre-gym snack", note: "Carbs only — no protein", cat: "meal-light" },
     { m: 510,  label: "GYM — upper body", note: "Keeps legs fresh for BJJ", cat: "gym" },
     { m: 600,  label: "Shower + Meal 1", note: "Big breakfast", cat: "meal" },
     { m: 645,  label: "WebBlaze work / school", note: "Flexible", cat: "work" },
+    { m: 720,  label: "Walk the dog", cat: "chore" },
     { m: 780,  label: "Meal 2", cat: "meal" },
     { m: 810,  label: "School block", cat: "school" },
+    { m: 900,  label: "Walk the dog", cat: "chore" },
     { m: 960,  label: "Meal 3", note: "Light, carb-leaning — last food before BJJ", cat: "meal-light" },
     { m: 990,  label: "WebBlaze / free", cat: "work" },
+    { m: 1080, label: "Walk the dog", cat: "chore" },
     { m: 1110, label: "Tiny carb snack", note: "Optional", cat: "meal-light" },
     { m: 1155, label: "JIU JITSU", note: "7:15–9:20 · includes walk", cat: "bjj" },
     { m: 1290, label: "Dinner", note: "Protein + carbs to recover", cat: "meal" },
+    { m: 1320, label: "Walk dog + take out trash", note: "Last chore before bed", cat: "chore" },
     { m: 1350, label: "Sleep", cat: "rest" }
   ];
 
@@ -500,7 +512,7 @@
     { dow: "Wed", focus: "Shoulders + Arms", sub: "Delts · biceps · triceps", gc: "var(--c-gym)", bjj: true },
     { dow: "Thu", focus: "Legs", sub: "The one leg day — go hard", gc: "var(--c-gym)" },
     { dow: "Fri", focus: "Push", sub: "Chest · shoulders · triceps", gc: "var(--c-gym)" },
-    { dow: "Sat", focus: "Pull + Athletic", sub: "Back · biceps + basketball", gc: "var(--c-club)" },
+    { dow: "Sat", focus: "Pull + Athletic", sub: "Back · biceps + laundry day", gc: "var(--c-club)" },
     { dow: "Sun", focus: "Rest", sub: "Recover · mobility", gc: "var(--c-rest)", rest: true }
   ];
   var GYM_DOW_INDEX = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 0 };
@@ -541,7 +553,7 @@
       { nm: "Lateral Raises", sr: "3 × 12–15" },
       { nm: "Dips (assisted ok)", sr: "3 × 8–12" }
     ]},
-    { day: "Sat", focus: "Pull + Athletic", note: "+ basketball", ex: [
+    { day: "Sat", focus: "Pull + Athletic", note: "+ laundry day", ex: [
       { nm: "Chin-ups", sr: "3 × AMRAP" },
       { nm: "Seated Cable Row", sr: "3 × 10–12" },
       { nm: "Hammer Curls", sr: "3 × 12" },
@@ -563,7 +575,7 @@
   var NUTRITION = [
     { k: "01", html: "<b>~3,000–3,200 calories/day.</b> Your maintenance is ~2,700 at 5'8\" / 120 lb and this activity level — the rest is your building surplus." },
     { k: "02", html: "<b>~120g protein/day</b> — about 30g per meal across your 4 meals (eggs, chicken, beef, dairy, protein shake if needed)." },
-    { k: "03", html: "<b>~430–450g carbs/day.</b> Rice, oats, pasta, fruit — fuels the gym, BJJ, and basketball, and drives growth." },
+    { k: "03", html: "<b>~430–450g carbs/day.</b> Rice, oats, pasta, fruit — fuels the gym and BJJ, and drives growth." },
     { k: "04", html: "<b>~85–95g fat/day</b> for hormones — eggs, nuts, olive oil, salmon." },
     { k: "05", html: "<b>Meal 1 after the gym</b> = protein + carbs. Prime window to refuel and rebuild." },
     { k: "06", html: "<b>Sleep is when muscle is built.</b> Your 8:00→10:30 gives 9.5 hrs — protect it like a workout." },
@@ -685,7 +697,7 @@
       '<div class="macro-tile"><div class="num">' + esc(MACROS.carbs) + '</div><div class="lbl">Carbs</div></div>' +
       '<div class="macro-tile"><div class="num">' + esc(MACROS.fat) + '</div><div class="lbl">Fat</div></div>' +
     '</div>' +
-    '<div class="mc-foot">Based on your height/weight + 6-day gym + BJJ + basketball load. Re-check every few weeks as you gain.</div>';
+    '<div class="mc-foot">Based on your height/weight + 6-day gym + BJJ load. Re-check every few weeks as you gain.</div>';
 
   // ---------- Render clubs ----------
   var cl = document.getElementById("clubs");
@@ -718,7 +730,7 @@
   } else if (todayTemplate === "normal") {
     sub.textContent = "Normal day — gym this morning, school + WebBlaze blocks, late dinner.";
   } else if (todayIdx === 6) {
-    sub.textContent = "Saturday — athletic gym + basketball. Lightest structure of the week.";
+    sub.textContent = "Saturday — athletic gym + laundry day. Lightest structure of the week.";
   } else {
     sub.textContent = "Sunday — rest day. No gym. Recover, and send me this week's events tonight.";
   }
