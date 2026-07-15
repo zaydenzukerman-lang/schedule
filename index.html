@@ -424,6 +424,26 @@
     <div><b>Age note (13):</b> strength training is safe and great for you when form comes first. Skip 1-rep-max attempts and powerlifting-style maxing until you're more grown — build the technique now, the size follows.</div>
   </div>
 
+  <!-- MONEY TRACK -->
+  <div class="section-head reveal"><h2>Money Track — Ship &amp; Monetize</h2><span class="rule"></span><span class="count">North Star · Blue Spark</span></div>
+
+  <div class="goalcard reveal" style="border-left-color: var(--c-club);">
+    <div class="gc-step">Right now<b>Free time · hobby dev</b></div>
+    <div class="gc-arrow" aria-hidden="true" style="color: var(--c-club);">→</div>
+    <div class="gc-step">The goal<b>Real revenue via Play.fun / Steam</b></div>
+    <div class="gc-how">Every evening <b>Game Dev</b> block on the timeline above now points at <b>shipping</b>, not just building. An unfinished game earns nothing — the lever is: finish one, launch it, wire up monetization, repeat.</div>
+  </div>
+
+  <div class="panel reveal" style="margin-bottom: 22px;">
+    <h3>Ship Checklist — North Star / Blue Spark</h3>
+    <ul class="rules" id="shipchecklist"></ul>
+  </div>
+
+  <div class="weightcta reveal" style="background: color-mix(in oklab, var(--c-club) 8%, var(--surface)); border-color: color-mix(in oklab, var(--c-club) 45%, var(--border));">
+    <span class="pin" style="color: var(--c-club);">!</span>
+    <div><b>Payout reality:</b> Steam, itch.io, and Play.fun accounts all need an adult to hold them. Loop your dad in early — money from a shipped game has nowhere to land without an account already set up.</div>
+  </div>
+
   <!-- CLUBS + RULES -->
   <div class="grid-2b reveal" style="animation-delay:.2s">
     <div class="panel">
@@ -473,7 +493,7 @@
     { m: 1080, label: "Walk the dog", cat: "chore" },
     { m: 1095, label: "Free time · clubs / hobby", cat: "club" },
     { m: 1155, label: "Meal 4 — dinner", note: "Later, as planned", cat: "meal" },
-    { m: 1185, label: "Free time · game dev / hobby", cat: "club" },
+    { m: 1185, label: "Game Dev — ship & monetize", note: "North Star / Blue Spark — build toward launch", cat: "club" },
     { m: 1290, label: "Wind-down · reading", note: "Screens down — 1 hr before bed", cat: "rest" },
     { m: 1320, label: "Walk dog + take out trash", note: "Last chore before bed", cat: "chore" },
     { m: 1350, label: "Sleep", cat: "rest" }
@@ -584,6 +604,16 @@
 
   var MACROS = { cals: "3,000–3,200", protein: "120g", carbs: "430–450g", fat: "85–95g", weight: "5'8\" · 120 lb" };
 
+  var SHIP_CHECKLIST = [
+    { k: "01", html: "<b>Pick ONE game to finish first.</b> Two half-shipped games earn less than one finished one — don't split focus." },
+    { k: "02", html: "<b>Finish the core loop.</b> A tight, polished vertical slice beats a sprawling incomplete build every time." },
+    { k: "03", html: "<b>Playtest + QA pass.</b> Find the bugs and balance issues before anyone else does." },
+    { k: "04", html: "<b>Deploy a public build.</b> Web build (Play.fun-ready) or a Steam page — whichever fits the game." },
+    { k: "05", html: "<b>Wire up monetization.</b> Play.fun points widget for browser builds; Steam wishlist/store page for PC." },
+    { k: "06", html: "<b>Promote it.</b> Clips, screenshots, a trailer — traffic is the other half of revenue, not an afterthought." },
+    { k: "07", html: "<b>Then repeat</b> on the next game, using what the first launch taught you." }
+  ];
+
   var CLUBS = [
     { name: "3D Game Design", note: "Straight into your dev work (North Star, Blue Spark)", protect: true },
     { name: "Web Design", note: "Feeds directly into WebBlaze client work", protect: true },
@@ -687,6 +717,7 @@
   }
   renderRuleList("principles", PRINCIPLES);
   renderRuleList("nutrition", NUTRITION);
+  renderRuleList("shipchecklist", SHIP_CHECKLIST);
 
   // ---------- Render macros ----------
   document.getElementById("macros").innerHTML =
@@ -730,7 +761,7 @@
   } else if (todayTemplate === "normal") {
     sub.textContent = "Normal day — gym this morning, school + WebBlaze blocks, late dinner.";
   } else if (todayIdx === 6) {
-    sub.textContent = "Saturday — athletic gym + laundry day. Lightest structure of the week.";
+    sub.textContent = "Saturday — athletic gym + laundry day + a long game dev push. Lightest structure of the week.";
   } else {
     sub.textContent = "Sunday — rest day. No gym. Recover, and send me this week's events tonight.";
   }
